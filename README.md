@@ -1,6 +1,6 @@
 ### Step 1:
 
-<p>git clone git@github.com:DoutchakVasya/csv-reader.git</p>
+<p>git clone https://github.com/DoutchakVasya/csv-reader.git</p>
 
 ### Step 2
 
