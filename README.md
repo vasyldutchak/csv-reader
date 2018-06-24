@@ -24,7 +24,7 @@ php artisan migrate
 
 php artisan serve
 
-                                                                                            | Time spent: about 5.5 hours
+                                                                      | Time spent: about 5.5 hours
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
