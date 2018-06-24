@@ -24,6 +24,8 @@ php artisan migrate
 
 php artisan serve
 
+####After that you can see the project at http://127.0.0.1:8000/
+
                                                                       | Time spent: about 5.5 hours
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
