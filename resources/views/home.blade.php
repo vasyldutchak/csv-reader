@@ -95,7 +95,7 @@
                             <td>{{ $record->desctiption }}</td>
                         </tr>
                     @empty
-                        <span>There are not data</span>
+                        <span>There are no data</span>
                     @endforelse
 
                     </tbody>
