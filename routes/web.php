@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'ImportController@index')->name('home');
+Route::post('/', 'ImportController@parse');
+
