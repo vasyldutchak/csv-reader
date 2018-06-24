@@ -1,3 +1,30 @@
+### Step 1:
+
+<p>git clone git@github.com:DoutchakVasya/csv-reader.git</p>
+
+### Step 2
+
+composer install
+
+### Step 3
+
+nano .env
+
+You should change follow parameters:
+
+- DB_DATABASE=csv
+- DB_USERNAME=csv
+- DB_PASSWORD=csv
+
+### Step 4
+
+php artisan migrate
+
+### Step 5
+
+php artisan serve
+
+                                                                                            | Time spent: about 5.5 hours
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
