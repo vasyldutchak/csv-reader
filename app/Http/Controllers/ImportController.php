@@ -58,10 +58,17 @@ class ImportController extends Controller
     {
         $path = $request->file('csv_file')->path();
 
-        $input = Excel::load($path, function () {})->get()->toArray();
+        $input = Excel::load($path, function () {
+        })->get()->toArray();
+
+        $cleanInput = array_filter($input, function ($item) {
+
+            return ! is_null($item['uid']);
+
+        });
 
         // Якщо даних нема в новому csv файлі то вони повинні бути видалені
-        if (empty($input)) {
+        if (empty($cleanInput)) {
 
             $deleted = $this->model->deleteAll();
 
@@ -71,12 +78,27 @@ class ImportController extends Controller
                 'allRecords' => $this->model::all()
             ]);
 
-            return view('home', $afterDeleted );
+            return view('home', $afterDeleted);
+        }
+
+        // Якщо частина даних відсутня, видаляємо їх з БД
+        $existUids = $this->model->all()->pluck('uid')->toArray();
+        $inputUids = array_pluck($input, 'uid');
+
+
+        $difference = array_diff($existUids, $inputUids);
+
+
+        if ( ! empty($difference)) {
+
+            $deletedUids             = $this->model->whereIn('uid', $difference)->delete();
+            $this->status['deleted'] += $deletedUids;
 
         }
 
+
         // Якщо дані є - обробляємо їх
-        foreach ($input as $item) {
+        foreach ($cleanInput as $item) {
 
             $data = $this->model->saveData($item);
 
@@ -88,7 +110,6 @@ class ImportController extends Controller
             'allRecords' => $this->model::all()
         ]);
 
-        return view('home', $afterChanges );
-
+        return view('home', $afterChanges);
     }
 }

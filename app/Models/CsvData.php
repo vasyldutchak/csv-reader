@@ -40,6 +40,12 @@ class CsvData extends Model
 
         $uid = array_get($data, 'uid');
 
+        $currentUids = $this->select('uid')->get()->pluck('uid');
+
+
+//        $emptyData = array_except('uid');
+//        dd($emptyData);
+
         $item = CsvData::find($uid);
 
         if ($item !== null) {
